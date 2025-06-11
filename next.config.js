@@ -22,7 +22,7 @@ const nextConfig = {
       config.cache = {
         type: 'filesystem',
         buildDependencies: {
-          config: ['next.config.mjs'],
+          config: [__filename],
         },
       };
     }
@@ -35,4 +35,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
