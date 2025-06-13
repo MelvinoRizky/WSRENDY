@@ -208,7 +208,13 @@ function DashboardContent() {
                         <div className="flex justify-between items-start mb-2">
                           <h3 className="font-medium text-gray-900 text-sm leading-tight">{booking.room_name}</h3>
                           <div className="flex items-center space-x-2">
-                            <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700">
+                            <span className={`px-2 py-1 text-xs rounded-full ${
+                              booking.status === 'approved'
+                                ? 'bg-green-100 text-green-700'
+                                : booking.status === 'pending'
+                                ? 'bg-yellow-100 text-yellow-700'
+                                : 'bg-red-100 text-red-700'
+                            }`}>
                               {booking.status}
                             </span>
                             <button
@@ -334,7 +340,13 @@ function DashboardContent() {
                           <p className="text-sm text-gray-600">{booking.room_location}</p>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700">
+                          <span className={`px-2 py-1 text-xs rounded-full ${
+                            booking.status === 'approved'
+                              ? 'bg-green-100 text-green-700'
+                              : booking.status === 'pending'
+                              ? 'bg-yellow-100 text-yellow-700'
+                              : 'bg-red-100 text-red-700'
+                          }`}>
                             {booking.status}
                           </span>
                           <button

@@ -40,6 +40,39 @@ const getRoomById = (id) => {
       description: "Flexible workspace in vibrant community",
       image_url: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&h=600&fit=crop",
       facilities: ["WiFi", "Coffee", "Lounge", "Community"]
+    },
+    {
+      room_ID: 4,
+      name: "Conference Room B",
+      capacity: 12,
+      location: "Floor 2, Jakarta",
+      price_per_hour: 200000,
+      room_type: "meeting_room",
+      description: "Large conference room for team meetings",
+      image_url: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
+      facilities: ["Projector", "Sound System", "WiFi", "AC", "Catering"]
+    },
+    {
+      room_ID: 5,
+      name: "Creative Studio",
+      capacity: 6,
+      location: "Floor 4, Jakarta",
+      price_per_hour: 180000,
+      room_type: "private_office",
+      description: "Inspiring space for creative work",
+      image_url: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&h=600&fit=crop",
+      facilities: ["Natural Light", "Whiteboard", "WiFi", "Plants", "Art Supplies"]
+    },
+    {
+      room_ID: 6,
+      name: "Quiet Zone Desk",
+      capacity: 1,
+      location: "Floor 1, Jakarta",
+      price_per_hour: 50000,
+      room_type: "hot_desk",
+      description: "Perfect for focused individual work",
+      image_url: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
+      facilities: ["WiFi", "Quiet Zone", "Power Outlet", "Ergonomic Chair"]
     }
   ];
   
@@ -81,8 +114,8 @@ export default function BookRoomPage({ params }) {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate booking process
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // Small delay to show spinner briefly (0.5s)
+    await new Promise(resolve => setTimeout(resolve, 500));
     
     // Create booking object
     const newBooking = {
@@ -95,7 +128,7 @@ export default function BookRoomPage({ params }) {
       booking_date: bookingData.date,
       start_time: bookingData.startTime,
       end_time: bookingData.endTime,
-      status: 'confirmed',
+      status: 'pending',
       created_at: new Date().toISOString(),
       room_location: room.location,
       room_capacity: room.capacity,
@@ -129,7 +162,7 @@ export default function BookRoomPage({ params }) {
     localStorage.setItem('rendyws_user_stats', JSON.stringify(updatedStats));
     
     // Show success message
-    alert(`Booking confirmed! 🎉\n\nRoom: ${room.name}\nDate: ${bookingData.date}\nStart: ${bookingData.startTime}\nEnd: ${bookingData.endTime}`);
+    alert(`Booking request submitted! 🎉\n\nRoom: ${room.name}\nDate: ${bookingData.date}\nStart: ${bookingData.startTime}\nEnd: ${bookingData.endTime}\n\nWaiting for admin approval.`);
     
     // Redirect to dashboard
     router.push('/dashboard');

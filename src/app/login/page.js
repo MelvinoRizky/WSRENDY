@@ -4,11 +4,23 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-// Dummy credentials untuk testing
-const DUMMY_CREDENTIALS = {
-  email: 'rendyreza@rendyws.com',
-  password: '123456'
-};
+// Dummy credentials untuk testing (user & admin)
+const DUMMY_USERS = [
+  {
+    email: 'rendyreza@rendyws.com',
+    password: '123456',
+    name: 'RendyReza',
+    role: 'user',
+    user_ID: 1
+  },
+  {
+    email: 'rendylovedeona@gmail.com',
+    password: '12345',
+    name: 'Admin',
+    role: 'admin',
+    user_ID: 999 // arbitrary admin ID
+  }
+];
 
 export default function LoginPage() {
   const router = useRouter();
@@ -28,22 +40,31 @@ export default function LoginPage() {
     // Simulate loading
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    // Check credentials
-    if (formData.email === DUMMY_CREDENTIALS.email && 
-        formData.password === DUMMY_CREDENTIALS.password) {
-      
+    // Check credentials against dummy list
+    const matchedUser = DUMMY_USERS.find(
+      (u) => u.email === formData.email && u.password === formData.password
+    );
+
+    if (matchedUser) {
       // Store user session in localStorage (temporary solution)
       localStorage.setItem('rendyws_user', JSON.stringify({
-        user_ID: 1,
-        name: "RendyReza",
-        email: formData.email,
-        role: "user",
+        user_ID: matchedUser.user_ID,
+        name: matchedUser.name,
+        email: matchedUser.email,
+        role: matchedUser.role,
         isLoggedIn: true
       }));
-      
-      // Redirect to intended page if provided
+
+      // Decide default redirect based on role
+      const defaultRedirect = matchedUser.role === 'admin' ? '/admin-dashboard' : '/dashboard';
+
+      // Redirect to intended page if provided (ignore if admin to non-admin pages)
       const redirect = searchParams.get('redirect');
-      router.push(redirect ? redirect : '/dashboard');
+      if (redirect && matchedUser.role !== 'admin') {
+        router.push(redirect);
+      } else {
+        router.push(defaultRedirect);
+      }
     } else {
       setError('Invalid email or password. Please check your credentials.');
     }

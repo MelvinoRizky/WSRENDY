@@ -33,6 +33,12 @@ export default function Navigation({ user, showUserMenu, setShowUserMenu, handle
                 <Link href="/rooms" className="text-secondary-600 hover:text-primary-600 transition-colors">
                   Browse Rooms
                 </Link>
+                <Link 
+                  href={user.role === 'admin' ? '/admin-dashboard' : '/dashboard'} 
+                  className="text-secondary-600 hover:text-primary-600 transition-colors hidden sm:block"
+                >
+                  {user.role === 'admin' ? 'Dashboard Admin' : 'Dashboard'}
+                </Link>
                 <div className="relative">
                   <button
                     onClick={() => setShowUserMenu(!showUserMenu)}
@@ -52,11 +58,11 @@ export default function Navigation({ user, showUserMenu, setShowUserMenu, handle
                   {showUserMenu && (
                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-secondary-200 py-2">
                       <Link 
-                        href="/dashboard" 
+                        href={user.role === 'admin' ? '/admin-dashboard' : '/dashboard'} 
                         className="block px-4 py-2 text-secondary-700 hover:bg-secondary-50 transition-colors"
                         onClick={() => setShowUserMenu(false)}
                       >
-                        📊 Dashboard
+                        📊 {user.role === 'admin' ? 'Admin Dashboard' : 'Dashboard'}
                       </Link>
                       <Link 
                         href="/rooms" 

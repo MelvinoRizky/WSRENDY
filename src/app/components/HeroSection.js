@@ -45,8 +45,11 @@ export default function HeroSection({ user }) {
                 <Link href="/rooms" className="px-10 py-4 bg-white text-primary-600 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 text-center min-w-[160px]">
                   Browse Rooms
                 </Link>
-                <Link href="/dashboard" className="px-10 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 text-center min-w-[160px]">
-                  My Dashboard
+                <Link 
+                  href={user.role === 'admin' ? '/admin-dashboard' : '/dashboard'} 
+                  className="px-10 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 text-center min-w-[160px]"
+                >
+                  {user.role === 'admin' ? 'Dashboard Admin' : 'My Dashboard'}
                 </Link>
               </>
             ) : (

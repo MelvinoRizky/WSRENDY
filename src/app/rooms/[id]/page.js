@@ -54,6 +54,54 @@ const getRoomById = (id) => {
         "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&h=600&fit=crop"
       ]
+    },
+    {
+      room_ID: 4,
+      name: "Conference Room B",
+      capacity: 12,
+      location: "Floor 2, Jakarta",
+      price_per_hour: 200000,
+      room_type: "meeting_room",
+      description: "Large conference room for team meetings",
+      image_url: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
+      facilities: ["Projector", "Sound System", "WiFi", "AC", "Catering"],
+      images: [
+        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&h=600&fit=crop"
+      ]
+    },
+    {
+      room_ID: 5,
+      name: "Creative Studio",
+      capacity: 6,
+      location: "Floor 4, Jakarta",
+      price_per_hour: 180000,
+      room_type: "private_office",
+      description: "Inspiring space for creative work",
+      image_url: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&h=600&fit=crop",
+      facilities: ["Natural Light", "Whiteboard", "WiFi", "Plants", "Art Supplies"],
+      images: [
+        "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop"
+      ]
+    },
+    {
+      room_ID: 6,
+      name: "Quiet Zone Desk",
+      capacity: 1,
+      location: "Floor 1, Jakarta",
+      price_per_hour: 50000,
+      room_type: "hot_desk",
+      description: "Perfect for focused individual work",
+      image_url: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
+      facilities: ["WiFi", "Quiet Zone", "Power Outlet", "Ergonomic Chair"],
+      images: [
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&h=600&fit=crop"
+      ]
     }
   ];
   
@@ -113,8 +161,11 @@ export default function RoomDetailPage({ params }) {
                 ← Back to Rooms
               </Link>
               {user ? (
-                <Link href="/dashboard" className="btn-primary">
-                  Dashboard
+                <Link 
+                  href={user.role === 'admin' ? '/admin-dashboard' : '/dashboard'} 
+                  className="btn-primary"
+                >
+                  {user.role === 'admin' ? 'Dashboard Admin' : 'Dashboard'}
                 </Link>
               ) : (
                 <Link href="/login" className="btn-primary">

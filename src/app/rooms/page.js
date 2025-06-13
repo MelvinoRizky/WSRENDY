@@ -177,8 +177,11 @@ export default function RoomsPage() {
               {user && user.isLoggedIn ? (
                 // Logged in user
                 <>
-                  <Link href="/dashboard" className="text-gray-600 hover:text-blue-600 transition-colors">
-                    Dashboard
+                  <Link 
+                    href={user && user.role === 'admin' ? '/admin-dashboard' : '/dashboard'} 
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    {user && user.role === 'admin' ? 'Dashboard Admin' : 'Dashboard'}
                   </Link>
                   <div className="relative">
                     <button
@@ -392,19 +395,7 @@ export default function RoomsPage() {
                       {room.location}
                     </div>
                     
-                    {/* Facilities */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {room.facilities.slice(0, 3).map((facility, idx) => (
-                        <span key={idx} className="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs font-medium">
-                          {facility}
-                        </span>
-                      ))}
-                      {room.facilities.length > 3 && (
-                        <span className="text-gray-500 text-xs">
-                          +{room.facilities.length - 3} more
-                        </span>
-                      )}
-                    </div>
+                    {/* Facilities badges removed for cleaner UI */}
                     
                     <div className="flex gap-3">
                       <Link 
