@@ -239,7 +239,7 @@ export default function RoomDetailPage({ params }) {
             </div>
 
             {/* Facilities */}
-            <div>
+            {/* <div>
               <h3 className="text-lg font-semibold text-secondary-900 mb-4">Facilities & Amenities</h3>
               <div className="grid grid-cols-2 gap-3">
                 {room.facilities.map((facility, index) => (
@@ -249,7 +249,7 @@ export default function RoomDetailPage({ params }) {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* Booking CTA */}
             <div className="space-y-4">
@@ -259,9 +259,7 @@ export default function RoomDetailPage({ params }) {
               >
                 Book This Room
               </Link>
-              <button className="btn-secondary w-full">
-                💬 Contact Support
-              </button>
+             
             </div>
 
             {/* Additional Info */}
