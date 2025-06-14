@@ -16,7 +16,7 @@ export default function Navigation({ user, showUserMenu, setShowUserMenu, handle
               <span className="font-display font-bold text-xl text-secondary-900">RendyWS</span>
             </div>
             
-            {/* Navigation Links next to logo */}
+          
             <div className="hidden md:flex items-center space-x-6">
               <Link href="#rooms" className="text-secondary-600 hover:text-primary-600 transition-colors">
                 Rooms

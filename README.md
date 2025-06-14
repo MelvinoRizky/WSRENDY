@@ -1,1 +1,0 @@
-rendy gokil bet dah

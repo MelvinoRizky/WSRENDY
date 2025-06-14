@@ -14,7 +14,7 @@ const DUMMY_USERS = [
     user_ID: 1
   },
   {
-    email: 'rendylovedeona@gmail.com',
+    email: 'rendyadmin@gmail.com',
     password: '12345',
     name: 'Admin',
     role: 'admin',

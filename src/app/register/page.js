@@ -44,7 +44,6 @@ export default function RegisterPage() {
     setErrors(newErrors);
     
     if (Object.keys(newErrors).length === 0) {
-      // Mock registration - in real app this would connect to backend
       console.log('Registration attempt:', formData);
       alert('Registration successful! Please login with your credentials.');
       // Redirect to login
@@ -58,7 +57,6 @@ export default function RegisterPage() {
       [e.target.name]: e.target.value
     });
     
-    // Clear error when user starts typing
     if (errors[e.target.name]) {
       setErrors({
         ...errors,
